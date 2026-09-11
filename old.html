@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROBOTICA | STEM & Robotics Education - Cantonments, Accra</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.jpg">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Plus Jakarta Sans Font for Dwight & Co inspired geometric typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        dwightTeal: '#10AFCA',
+                        dwightTealDark: '#0D97AF',
+                        dwightLightCyan: '#D2F2F7',
+                        dwightNavy: '#0B1C2D',
+                        dwightNavyCard: '#11273C',
+                        dwightNavyDark: '#081624',
+                        dwightAccentCyan: '#2ED5EC',
+                        // Warm & vibrant hardware accents to break up blue overload
+                        legoOrange: '#FF6B35',
+                        legoYellow: '#FFC857',
+                        arduinoGreen: '#10B981',
+                        codePurple: '#8B5CF6',
+                        warmNeutral: '#F8FAFC',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0B1C2D;
+            color: #1E293B;
+            overflow-x: hidden;
+        }
+
+        /* Hero circuit grid pattern */
+        .circuit-bg {
+            background-color: #0B1C2D;
+            background-image: 
+                radial-gradient(rgba(46, 213, 236, 0.12) 1px, transparent 1px),
+                radial-gradient(rgba(255, 107, 53, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+        }
+
+        /* Card lift and glow effects */
+        .hover-lift {
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(16, 175, 202, 0.2);
+        }
+
+        /* Gradient typography */
+        .text-gradient-orange {
+            background: linear-gradient(135deg, #FF6B35 0%, #FFC857 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-dwightAccentCyan selection:text-dwightNavy">
+
+    <!-- FLOATING TOP NAVIGATION HEADER (Dwight & Co floating pill style) -->
+    <header class="fixed top-3 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <nav class="bg-dwightLightCyan/95 backdrop-blur-md rounded-2xl px-4 sm:px-6 py-2.5 shadow-2xl flex items-center justify-between border border-white/50">
+            <!-- Brand Logo with Real Logo Image -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="h-11 px-2.5 rounded-xl bg-white flex items-center justify-center shadow-md border border-dwightNavy/10 transition-transform group-hover:scale-105 duration-200">
+                    <img src="logo.jpg" onerror="this.onerror=null;this.src='logo.png'" alt="ROBOTICA Robotics Club" class="h-8 w-auto object-contain">
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl sm:text-2xl font-black tracking-tight text-dwightNavy leading-none">ROBOTICA</span>
+                    <span class="text-[10px] font-extrabold tracking-widest text-legoOrange uppercase">Robotics Club • Cantonments</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center space-x-7 font-bold text-sm text-dwightNavy">
+                <a href="#about" class="hover:text-legoOrange transition-colors">Why Us</a>
+                <a href="#curriculum" class="hover:text-legoOrange transition-colors">Courses & Kits</a>
+                <a href="#projects" class="hover:text-legoOrange transition-colors">Student Projects</a>
+                <a href="#schedules" class="hover:text-legoOrange transition-colors">Schedules & Pricing</a>
+                <a href="#contact" class="hover:text-legoOrange transition-colors">Location</a>
+            </div>
+
+            <!-- Action CTA Buttons -->
+            <div class="flex items-center gap-3">
+                <a href="tel:0530293161" class="hidden sm:flex items-center gap-1.5 text-xs font-bold text-dwightNavy bg-white/80 hover:bg-white px-3 py-2 rounded-lg border border-dwightNavy/10 shadow-sm transition-all">
+                    <svg class="w-3.5 h-3.5 text-legoOrange" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+                    0530 293 161
+                </a>
+                <button onclick="openModal()" class="bg-dwightNavy hover:bg-legoOrange text-white px-5 py-2.5 rounded-lg text-xs sm:text-sm font-extrabold tracking-wider uppercase transition-all shadow-lg hover:shadow-xl">
+                    GET IN TOUCH
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 bg-white/80 hover:bg-white rounded-lg flex items-center justify-center text-dwightNavy focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-2 bg-dwightNavy text-white rounded-2xl p-6 shadow-2xl border border-dwightAccentCyan/20 transition-all">
+            <div class="flex items-center gap-3 pb-4 mb-4 border-b border-white/15">
+                <div class="h-10 px-2.5 rounded-lg bg-white flex items-center justify-center shadow">
+                    <img src="logo.jpg" onerror="this.onerror=null;this.src='logo.png'" alt="ROBOTICA" class="h-7 w-auto object-contain">
+                </div>
+                <div>
+                    <span class="text-lg font-black text-white">ROBOTICA</span>
+                    <span class="block text-[10px] text-dwightAccentCyan font-bold uppercase">Cantonments • Accra</span>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4 font-bold text-base">
+                <a href="#about" onclick="toggleMobileMenu()" class="py-2 border-b border-white/10 hover:text-dwightAccentCyan">Why ROBOTICA</a>
+                <a href="#curriculum" onclick="toggleMobileMenu()" class="py-2 border-b border-white/10 hover:text-dwightAccentCyan">Curriculum & Kits</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="py-2 border-b border-white/10 hover:text-dwightAccentCyan">Student Projects Showcase</a>
+                <a href="#schedules" onclick="toggleMobileMenu()" class="py-2 border-b border-white/10 hover:text-dwightAccentCyan">Schedules & Fees</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="py-2 hover:text-dwightAccentCyan">Location & Contact</a>
+                <div class="pt-2 text-dwightAccentCyan text-sm font-semibold flex flex-col gap-1">
+                    <span>📍 Cantonments, Accra, Ghana</span>
+                    <a href="tel:0530293161" class="text-legoOrange font-bold">📞 0530 293 161</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (children.jpg / children.png as main background photo with sleek tech overlays) -->
+    <section class="relative pt-36 pb-20 md:pt-44 md:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden text-white min-h-[85vh] flex items-center">
+        <!-- Main Background Photo: children.jpg / children.png -->
+        <div class="absolute inset-0 z-0">
+            <img src="children.jpg" onerror="this.onerror=null;this.src='children.png'" alt="Cantonments STEM Students Building Robots" class="w-full h-full object-cover object-center transform scale-105 filter brightness-[0.35] contrast-[1.2] saturate-[1.15]">
+            <!-- Elegant gradient scrims for pristine text contrast and luxury feel -->
+            <div class="absolute inset-0 bg-gradient-to-r from-dwightNavy via-dwightNavy/90 to-dwightNavy/70"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-dwightNavy via-transparent to-dwightNavy/80"></div>
+            <!-- Circuit grid texture overlay -->
+            <div class="absolute inset-0 circuit-bg opacity-30 mix-blend-screen pointer-events-none"></div>
+        </div>
+
+        <!-- Decorative luminous glow spheres -->
+        <div class="absolute top-1/4 left-1/3 -translate-x-1/2 w-[550px] h-[550px] bg-dwightAccentCyan/15 rounded-full blur-3xl pointer-events-none z-0"></div>
+        <div class="absolute top-12 right-12 w-80 h-80 bg-legoOrange/15 rounded-full blur-3xl pointer-events-none z-0"></div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 w-full">
+            <!-- Left Hero Content -->
+            <div class="lg:col-span-7 space-y-6 text-left">
+                <div class="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md text-white font-bold text-xs uppercase px-4 py-2 rounded-full border border-white/20 shadow-md">
+                    <span class="w-2.5 h-2.5 rounded-full bg-legoOrange animate-ping"></span>
+                    Accra's Premier Hands-On STEM & Robotics Academy
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.08]">
+                    We empower young <span class="text-dwightAccentCyan">automation</span> innovators.
+                </h1>
+
+                <p class="text-lg sm:text-xl text-slate-200 font-medium leading-relaxed max-w-2xl drop-shadow">
+                    Focus on your child's future leadership, while we build their hands-on robotics, engineering, and coding foundation in Cantonments, Accra.
+                </p>
+
+                <div class="pt-4 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+                    <button onclick="openModal()" class="bg-legoOrange hover:bg-orange-600 text-white font-extrabold text-sm uppercase px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5 tracking-wider text-center">
+                        BOOK A FREE TRIAL CLASS
+                    </button>
+                    <a href="tel:0530293161" class="border-2 border-dwightAccentCyan text-dwightAccentCyan hover:bg-dwightAccentCyan/10 font-bold text-sm px-6 py-3.5 rounded-xl text-center transition-all flex items-center justify-center gap-2 backdrop-blur-sm">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        CALL 0530 293 161
+                    </a>
+                </div>
+
+                <!-- Hardware Tool Badges (Warm & Colorful accents) -->
+                <div class="pt-6 border-t border-white/15 flex flex-wrap items-center gap-4 text-xs font-bold tracking-wider uppercase">
+                    <span class="flex items-center gap-2 bg-dwightNavyCard/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-dwightTeal/40 text-dwightAccentCyan">
+                        <span class="w-2 h-2 rounded-full bg-dwightAccentCyan"></span>
+                        mBot Scratch
+                    </span>
+                    <span class="flex items-center gap-2 bg-dwightNavyCard/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-legoOrange/40 text-legoOrange">
+                        <span class="w-2 h-2 rounded-full bg-legoOrange"></span>
+                        LEGO Spike Prime
+                    </span>
+                    <span class="flex items-center gap-2 bg-dwightNavyCard/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-arduinoGreen/40 text-arduinoGreen">
+                        <span class="w-2 h-2 rounded-full bg-arduinoGreen"></span>
+                        Arduino C++
+                    </span>
+                    <span class="flex items-center gap-2 bg-dwightNavyCard/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-codePurple/40 text-purple-300">
+                        <span class="w-2 h-2 rounded-full bg-codePurple"></span>
+                        IoT & MicroPython
+                    </span>
+                </div>
+            </div>
+
+            <!-- Right Hero Visual: Live Workshop Card highlighting children building robots -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <div class="relative w-full max-w-lg group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-dwightAccentCyan via-legoOrange to-arduinoGreen rounded-3xl blur-md opacity-40 group-hover:opacity-75 transition duration-500"></div>
+                    <div class="relative bg-dwightNavyCard/95 backdrop-blur-xl rounded-2xl p-3 sm:p-4 border border-white/20 shadow-2xl space-y-4">
+                        <div class="relative rounded-xl overflow-hidden aspect-[4/3] shadow-inner">
+                            <img src="children.jpg" onerror="this.onerror=null;this.src='children.png'" alt="Ghanaian students building mBot robot in Cantonments" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dwightNavy/90 via-dwightNavy/20 to-transparent"></div>
+                            
+                            <div class="absolute top-3 left-3 bg-dwightNavy/85 backdrop-blur-md border border-white/20 rounded-lg px-2.5 py-1 text-[11px] font-extrabold text-dwightAccentCyan flex items-center gap-1.5 shadow">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                Cantonments Academy Lab
+                            </div>
+                            
+                            <div class="absolute bottom-3 inset-x-3 text-white">
+                                <span class="text-[10px] font-extrabold text-legoOrange uppercase tracking-wider block">Real Hands-On Engineering</span>
+                                <h4 class="text-base font-bold leading-tight drop-shadow">Students Assembling mBot Robots</h4>
+                            </div>
+                        </div>
+
+                        <!-- Highlights strip -->
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div class="bg-white/5 rounded-xl p-2.5 border border-white/10">
+                                <span class="block font-black text-dwightAccentCyan text-lg leading-none">1 : 5</span>
+                                <span class="text-[10px] text-slate-300 font-bold uppercase tracking-wider">Coach Ratio</span>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-2.5 border border-white/10">
+                                <span class="block font-black text-legoOrange text-lg leading-none">100%</span>
+                                <span class="text-[10px] text-slate-300 font-bold uppercase tracking-wider">Physical Kits</span>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-2.5 border border-white/10">
+                                <span class="block font-black text-arduinoGreen text-lg leading-none">Ages 6–17</span>
+                                <span class="text-[10px] text-slate-300 font-bold uppercase tracking-wider">Curriculum</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHT NEUTRAL SECTION 1: KEY ACADEMY PILLARS (Replaces heavy blue saturation with crisp white/slate design) -->
+    <section id="about" class="bg-warmNeutral py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200 relative z-20">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-legoOrange font-extrabold text-xs tracking-widest uppercase bg-orange-100 px-3.5 py-1.5 rounded-full border border-orange-200">
+                    WHY CANTONMENTS PARENTS CHOOSE US
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-dwightNavy tracking-tight">
+                    Real Hardware. Real Engineering. Zero Screen Waste.
+                </h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    Unlike typical software bootcamps that rely solely on screen simulations, ROBOTICA provides physical robotics kits, electrical breadboards, and hands-on tools for every single student.
+                </p>
+            </div>
+
+            <!-- Feature Cards (White background cards with subtle colored borders) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1: Hardware -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover-lift flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-dwightNavy flex items-center justify-center text-dwightAccentCyan shadow-md group-hover:bg-dwightTeal transition-colors">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-dwightNavy tracking-tight">Deep Hardware Mastery</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Students build with real ultrasonic sensors, servo motors, breadboards, and microcontrollers in Cantonments—gaining genuine electrical engineering experience.
+                        </p>
+                    </div>
+                    <div class="pt-6 text-dwightTeal font-bold text-xs uppercase tracking-widest flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                        Physical Kits Provided <span>→</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Curriculum -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover-lift flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-dwightNavy flex items-center justify-center text-legoOrange shadow-md group-hover:bg-legoOrange group-hover:text-white transition-colors">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-dwightNavy tracking-tight">Structured Growth Paths</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            A clear progression roadmap: starting from Scratch visual blocks on mBot (Ages 6–9), stepping up to LEGO Spike Prime gears (8–12), and mastering Arduino C++ syntax (12+).
+                        </p>
+                    </div>
+                    <div class="pt-6 text-legoOrange font-bold text-xs uppercase tracking-widest flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                        Age-Adapted Tracks <span>→</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Competitions -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover-lift flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-dwightNavy flex items-center justify-center text-arduinoGreen shadow-md group-hover:bg-arduinoGreen group-hover:text-white transition-colors">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4a5 5 0 005 5h4a5 5 0 005-5V3M3 3h18M12 17v4m-4 0h8" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-dwightNavy tracking-tight">Competitions & Leagues</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Students collaborate in team robotics hackathons, building autonomous maze-solvers, obstacle cars, and smart IoT projects for competitions in Ghana and abroad.
+                        </p>
+                    </div>
+                    <div class="pt-6 text-arduinoGreen font-bold text-xs uppercase tracking-widest flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                        Global Tournaments <span>→</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR CURRICULUM SECTION (Dwight & Co exact replica numbered list with high-contrast kit tags) -->
+    <section id="curriculum" class="bg-dwightNavy py-20 px-4 sm:px-6 lg:px-8 border-t border-white/10 text-white">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="h-0.5 w-8 bg-dwightAccentCyan"></span>
+                        <span class="text-dwightAccentCyan font-extrabold text-xs tracking-widest uppercase">OUR CURRICULUM</span>
+                    </div>
+                    <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Where We Excel</h2>
+                </div>
+                <p class="text-slate-300 text-sm max-w-md">
+                    Click any program track below to explore course details, hardware kits used, and schedule availability.
+                </p>
+            </div>
+
+            <!-- Program List (Numbered Items) -->
+            <div class="space-y-6">
+                
+                <!-- Item 01: mBot -->
+                <div class="bg-dwightNavyCard border border-white/10 rounded-2xl p-6 sm:p-8 transition-all hover:border-dwightAccentCyan">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer" onclick="toggleAccordion('acc1')">
+                        <div class="flex items-start sm:items-center gap-6">
+                            <span class="bg-dwightNavy text-dwightAccentCyan font-extrabold text-base px-4 py-3 rounded-xl border border-dwightAccentCyan/30">01</span>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white tracking-tight">mBot Robotics & Scratch Block Logic</h3>
+                                <div class="flex items-center gap-3 mt-1.5">
+                                    <span class="bg-dwightTeal/20 text-dwightAccentCyan text-xs font-bold px-2.5 py-0.5 rounded-full border border-dwightTeal/30">Ages 6 – 9</span>
+                                    <span class="text-slate-400 text-xs">Beginner Explorer Track</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs bg-white/10 text-white px-3 py-1.5 rounded-full font-bold">Mon–Thu & Saturdays</span>
+                            <svg id="arrow-acc1" class="w-6 h-6 text-dwightAccentCyan transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                    </div>
+                    
+                    <div id="acc1" class="hidden pt-6 mt-6 border-t border-white/10 space-y-4 text-slate-300 text-sm leading-relaxed">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                            <div class="md:col-span-8 space-y-4">
+                                <p>
+                                    Introduces younger kids to physical robotics using Makeblock mBot. Students learn how motors turn, ultrasonic sensors detect distance, and line-follower modules navigate custom maze maps.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-semibold text-white text-xs">
+                                    <div class="bg-dwightNavy p-3 rounded-xl border border-white/10 flex items-center gap-2">
+                                        <span class="text-dwightAccentCyan font-bold">✓</span> Block Visual Coding
+                                    </div>
+                                    <div class="bg-dwightNavy p-3 rounded-xl border border-white/10 flex items-center gap-2">
+                                        <span class="text-dwightAccentCyan font-bold">✓</span> Ultrasonic Obstacle Avoidance
+                                    </div>
+                                    <div class="bg-dwightNavy p-3 rounded-xl border border-white/10 flex items-center gap-2">
+                                        <span class="text-dwightAccentCyan font-bold">✓</span> RGB LED Matrix Display
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:col-span-4 rounded-xl overflow-hidden border border-white/15 h-36 bg-slate-950 shadow-md">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Mbot_free_to_use_creative_commons.jpg/800px-Mbot_free_to_use_creative_commons.jpg" alt="mBot Robot Kit" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 02: LEGO Spike Prime -->
+                <div class="bg-dwightNavyCard border border-white/10 rounded-2xl p-6 sm:p-8 transition-all hover:border-legoOrange">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer" onclick="toggleAccordion('acc2')">
+                        <div class="flex items-start sm:items-center gap-6">
+                            <span class="bg-dwightNavy text-legoOrange font-extrabold text-base px-4 py-3 rounded-xl border border-legoOrange/30">02</span>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white tracking-tight">LEGO Spike Prime Mechanical Engineering</h3>
+                                <div class="flex items-center gap-3 mt-1.5">
+                                    <span class="bg-legoOrange/20 text-legoOrange text-xs font-bold px-2.5 py-0.5 rounded-full border border-legoOrange/30">Ages 8 – 12</span>
+                                    <span class="text-slate-400 text-xs">Intermediate Builder Track</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs bg-white/10 text-white px-3 py-1.5 rounded-full font-bold">Mon–Thu & Saturdays</span>
+                            <svg id="arrow-acc2" class="w-6 h-6 text-legoOrange transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                    </div>
+                    
+                    <div id="acc2" class="hidden pt-6 mt-6 border-t border-white/10 space-y-4 text-slate-300 text-sm leading-relaxed">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                            <div class="md:col-span-8 space-y-4">
+                                <p>
+                                    Combines colorful LEGO building elements, smart multi-port hubs, and high-torque motors. Students construct complex mechanical gears, robotic gripper arms, and automated sorting devices.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-semibold text-white text-xs">
+                                    <div class="bg-dwightNavy p-3 rounded-xl border border-white/10 flex items-center gap-2">
+                                        <span class="text-legoOrange font-bold">✓</span> Gyro & Force Sensor Control
+                                    </div>
+                                    <div class="bg-dwightNavy p-3 rounded-xl border border-white/10 flex items-center gap-2">
+                                        <span class="text-legoOrange font-bold">✓</span> Gear Ratios & Linkages
+                                    </div>
+                                    <div class="bg-dwightNavy p-3 rounded-xl border border-white/10 flex items-center gap-2">
+                                        <span class="text-legoOrange font-bold">✓</span> Scratch to Python Transition
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:col-span-4 rounded-xl overflow-hidden border border-white/15 h-36 bg-slate-950 shadow-md">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Lego_Spike_Robot_2.jpg/800px-Lego_Spike_Robot_2.jpg" alt="LEGO Spike Prime Kit" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 03: Arduino -->
+                <div class="bg-dwightNavyCard border border-white/10 rounded-2xl p-6 sm:p-8 transition-all hover:border-arduinoGreen">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer" onclick="toggleAccordion('acc3')">
+                        <div class="flex items-start sm:items-center gap-6">
+                            <span class="bg-dwightNavy text-arduinoGreen font-extrabold text-base px-4 py-3 rounded-xl border border-arduinoGreen/30">03</span>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white tracking-tight">Arduino Microcontrollers & Embedded C++</h3>
+                                <div class="flex items-center gap-3 mt-1.5">
+                                    <span class="bg-emerald-500/20 text-arduinoGreen text-xs font-bold px-2.5 py-0.5 rounded-full border border-arduinoGreen/30">Ages 12 – 17</span>
+                                    <span class="text-slate-400 text-xs">Advanced Inventor Track</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs bg-white/10 text-white px-3 py-1.5 rounded-full font-bold">Mon–Thu & Saturdays</span>
+                            <svg id="arrow-acc3" class="w-6 h-6 text-arduinoGreen transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                    </div>
+                    
+                    <div id="acc3" class="hidden pt-6 mt-6 border-t border-white/10 space-y-4 text-slate-300 text-sm leading-relaxed">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                            <div class="md:col-span-8 space-y-4">
+                                <p>
+                                    Real electronics engineering for teens! Students learn circuit design on breadboards, resistor calculations, transistor switching, and text-based C++ firmware code directly on Arduino Uno & Nano microchips.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-semibold text-white text-xs">
+                                    <div class="bg-dwightNavy p-3 rounded-xl border border-white/10 flex items-center gap-2">
+                                        <span class="text-arduinoGreen font-bold">✓</span> C++ Firmware Syntax
+                                    </div>
+                                    <div class="bg-dwightNavy p-3 rounded-xl border border-white/10 flex items-center gap-2">
+                                        <span class="text-arduinoGreen font-bold">✓</span> OLED & Sensor Interfacing
+                                    </div>
+                                    <div class="bg-dwightNavy p-3 rounded-xl border border-white/10 flex items-center gap-2">
+                                        <span class="text-arduinoGreen font-bold">✓</span> IoT & Wireless Controllers
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:col-span-4 rounded-xl overflow-hidden border border-white/15 h-36 bg-slate-950 shadow-md">
+                                <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=800&q=80" alt="Arduino Electronics Kit" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 04: Saturday League -->
+                <div class="bg-dwightNavyCard border border-white/10 rounded-2xl p-6 sm:p-8 transition-all hover:border-codePurple">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer" onclick="toggleAccordion('acc4')">
+                        <div class="flex items-start sm:items-center gap-6">
+                            <span class="bg-dwightNavy text-purple-400 font-extrabold text-base px-4 py-3 rounded-xl border border-purple-500/30">04</span>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white tracking-tight">Weekend Innovation & Hackathon League</h3>
+                                <div class="flex items-center gap-3 mt-1.5">
+                                    <span class="bg-purple-500/20 text-purple-300 text-xs font-bold px-2.5 py-0.5 rounded-full border border-purple-500/30">All Skill Levels</span>
+                                    <span class="text-slate-400 text-xs">Saturday Special</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-xs bg-legoOrange text-white px-3 py-1.5 rounded-full font-bold">Saturdays Only</span>
+                            <svg id="arrow-acc4" class="w-6 h-6 text-purple-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </div>
+                    </div>
+                    
+                    <div id="acc4" class="hidden pt-6 mt-6 border-t border-white/10 space-y-4 text-slate-300 text-sm leading-relaxed">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                            <div class="md:col-span-8 space-y-4">
+                                <p>
+                                    Designed for busy students who cannot attend weekday after-school sessions. Saturdays feature immersive multi-hour project builds, peer team challenges, and robotics league prep.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-semibold text-white text-xs">
+                                    <div class="bg-dwightNavy p-3 rounded-xl border border-white/10 flex items-center gap-2">
+                                        <span class="text-purple-400 font-bold">✓</span> Morning & Afternoon Slots
+                                    </div>
+                                    <div class="bg-dwightNavy p-3 rounded-xl border border-white/10 flex items-center gap-2">
+                                        <span class="text-purple-400 font-bold">✓</span> Hackathon Challenges
+                                    </div>
+                                    <div class="bg-dwightNavy p-3 rounded-xl border border-white/10 flex items-center gap-2">
+                                        <span class="text-purple-400 font-bold">✓</span> Official Certification
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:col-span-4 rounded-xl overflow-hidden border border-white/15 h-36 bg-slate-950 shadow-md">
+                                <img src="children.jpg" onerror="this.onerror=null;this.src='children.png'" alt="Students in Weekend League" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHT NEUTRAL SECTION 2: INTERACTIVE STUDENT PROJECTS GALLERY -->
+    <section id="projects" class="bg-slate-50 py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div class="space-y-3">
+                    <span class="text-dwightTeal font-extrabold text-xs tracking-widest uppercase bg-teal-50 px-3.5 py-1.5 rounded-full border border-teal-200">
+                        HANDS-ON OUTCOMES
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-dwightNavy tracking-tight">
+                        What Our Students Build in Accra
+                    </h2>
+                </div>
+
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2 text-xs font-bold">
+                    <button onclick="filterProjects('all')" class="project-btn active bg-dwightNavy text-white px-4 py-2 rounded-lg">All Kits</button>
+                    <button onclick="filterProjects('mbot')" class="project-btn bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg border border-slate-300">mBot</button>
+                    <button onclick="filterProjects('lego')" class="project-btn bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg border border-slate-300">LEGO Spike</button>
+                    <button onclick="filterProjects('arduino')" class="project-btn bg-white text-slate-700 hover:bg-slate-200 px-4 py-2 rounded-lg border border-slate-300">Arduino</button>
+                </div>
+            </div>
+
+            <!-- Project Cards Grid with Authentic Online Robot Photos -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: mBot Maze (Makeblock mBot) -->
+                <div class="project-card mbot bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover-lift flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-56 bg-slate-900 overflow-hidden group">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Mbot_free_to_use_creative_commons.jpg/800px-Mbot_free_to_use_creative_commons.jpg" alt="Makeblock mBot Robot Navigator" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dwightNavy/90 via-dwightNavy/20 to-transparent"></div>
+                            
+                            <div class="absolute top-3 left-3 flex items-center gap-2">
+                                <span class="bg-dwightAccentCyan text-dwightNavy font-extrabold text-[10px] uppercase px-2.5 py-1 rounded-full shadow">mBot Scratch</span>
+                                <span class="bg-dwightNavy/80 backdrop-blur-md text-white font-bold text-[10px] px-2.5 py-1 rounded-full border border-white/20">Ages 6–9</span>
+                            </div>
+                            
+                            <div class="absolute bottom-3 inset-x-4 text-white">
+                                <h4 class="text-lg font-extrabold leading-tight drop-shadow">Autonomous Maze Navigator</h4>
+                                <p class="text-xs text-dwightAccentCyan font-medium">Makeblock Dual-Motor Platform • 3 Weeks</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-3 text-slate-600 text-sm">
+                            <p>Equipped with dual ultrasonic "eyes" and infrared floor detectors. Navigates dynamic obstacle courses autonomously without touching maze walls.</p>
+                            
+                            <div class="flex flex-wrap gap-1.5 pt-1">
+                                <span class="text-[11px] bg-cyan-50 text-dwightTealDark border border-cyan-100 px-2.5 py-0.5 rounded-md font-semibold">Ultrasonic Radar</span>
+                                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">IR Line Sensor</span>
+                                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">Dual DC Motors</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0 border-t border-slate-100 mt-2 flex justify-between items-center text-xs font-bold text-dwightNavy">
+                        <span class="text-slate-500">Logic: <strong class="text-dwightNavy">Scratch Blocks</strong></span>
+                        <span class="text-dwightTeal flex items-center gap-1">📍 Cantonments Lab</span>
+                    </div>
+                </div>
+
+                <!-- Project 2: LEGO Sorting Arm & Claw (LEGO Spike Prime) -->
+                <div class="project-card lego bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover-lift flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-56 bg-slate-900 overflow-hidden group">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Lego_Spike_Robot_2.jpg/800px-Lego_Spike_Robot_2.jpg" alt="LEGO Spike Prime Robotic Claw" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dwightNavy/90 via-dwightNavy/20 to-transparent"></div>
+                            
+                            <div class="absolute top-3 left-3 flex items-center gap-2">
+                                <span class="bg-legoOrange text-white font-extrabold text-[10px] uppercase px-2.5 py-1 rounded-full shadow">LEGO Spike Prime</span>
+                                <span class="bg-dwightNavy/80 backdrop-blur-md text-white font-bold text-[10px] px-2.5 py-1 rounded-full border border-white/20">Ages 8–12</span>
+                            </div>
+                            
+                            <div class="absolute bottom-3 inset-x-4 text-white">
+                                <h4 class="text-lg font-extrabold leading-tight drop-shadow">Color-Sorting Robotic Claw</h4>
+                                <p class="text-xs text-legoYellow font-medium">Technic Motorized Linkages • 4 Weeks</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-3 text-slate-600 text-sm">
+                            <p>Reads color light frequency from objects and triggers high-torque motorized gear linkages to grasp and sort items into assigned bins.</p>
+                            
+                            <div class="flex flex-wrap gap-1.5 pt-1">
+                                <span class="text-[11px] bg-orange-50 text-legoOrange border border-orange-100 px-2.5 py-0.5 rounded-md font-semibold">Optical Color Sensor</span>
+                                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">Servo Gearbox</span>
+                                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">Smart Hub</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0 border-t border-slate-100 mt-2 flex justify-between items-center text-xs font-bold text-dwightNavy">
+                        <span class="text-slate-500">Code: <strong class="text-dwightNavy">Python + Word Blocks</strong></span>
+                        <span class="text-legoOrange flex items-center gap-1">📍 Cantonments Lab</span>
+                    </div>
+                </div>
+
+                <!-- Project 3: Arduino Agriculture IoT -->
+                <div class="project-card arduino bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover-lift flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-56 bg-slate-900 overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=800&q=80" alt="Arduino Smart Agriculture IoT Setup" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dwightNavy/90 via-dwightNavy/20 to-transparent"></div>
+                            
+                            <div class="absolute top-3 left-3 flex items-center gap-2">
+                                <span class="bg-arduinoGreen text-white font-extrabold text-[10px] uppercase px-2.5 py-1 rounded-full shadow">Arduino Uno C++</span>
+                                <span class="bg-dwightNavy/80 backdrop-blur-md text-white font-bold text-[10px] px-2.5 py-1 rounded-full border border-white/20">Ages 12–17</span>
+                            </div>
+                            
+                            <div class="absolute bottom-3 inset-x-4 text-white">
+                                <h4 class="text-lg font-extrabold leading-tight drop-shadow">Smart Agriculture & Soil IoT</h4>
+                                <p class="text-xs text-emerald-300 font-medium">Microcontroller Breadboard • Advanced</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-3 text-slate-600 text-sm">
+                            <p>Monitors capacitive soil moisture and temperature, triggering automated 5V submersible pumps and displaying real-time telemetry on an OLED screen.</p>
+                            
+                            <div class="flex flex-wrap gap-1.5 pt-1">
+                                <span class="text-[11px] bg-emerald-50 text-arduinoGreen border border-emerald-100 px-2.5 py-0.5 rounded-md font-semibold">Moisture Probe</span>
+                                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">Relay Driver</span>
+                                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">I2C OLED Screen</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0 border-t border-slate-100 mt-2 flex justify-between items-center text-xs font-bold text-dwightNavy">
+                        <span class="text-slate-500">Code: <strong class="text-dwightNavy">Embedded C++</strong></span>
+                        <span class="text-arduinoGreen flex items-center gap-1">📍 Cantonments Lab</span>
+                    </div>
+                </div>
+
+                <!-- Project 4: mBot Line-Follower Delivery Rover (mBot Scratch) -->
+                <div class="project-card mbot bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover-lift flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-56 bg-slate-900 overflow-hidden group">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/11/Mbot_free_to_use_creative_commons.jpg" alt="Makeblock mBot Line Follower Rover" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dwightNavy/90 via-dwightNavy/20 to-transparent"></div>
+                            
+                            <div class="absolute top-3 left-3 flex items-center gap-2">
+                                <span class="bg-dwightAccentCyan text-dwightNavy font-extrabold text-[10px] uppercase px-2.5 py-1 rounded-full shadow">mBot Scratch</span>
+                                <span class="bg-dwightNavy/80 backdrop-blur-md text-white font-bold text-[10px] px-2.5 py-1 rounded-full border border-white/20">Ages 7–9</span>
+                            </div>
+                            
+                            <div class="absolute bottom-3 inset-x-4 text-white">
+                                <h4 class="text-lg font-extrabold leading-tight drop-shadow">High-Speed Line-Tracking Bot</h4>
+                                <p class="text-xs text-dwightAccentCyan font-medium">Optical Tracking & LED Display • 2 Weeks</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-3 text-slate-600 text-sm">
+                            <p>Calculates proportional steering adjustments in real time using downward IR sensor arrays to trace curved race circuits at top speed.</p>
+                            
+                            <div class="flex flex-wrap gap-1.5 pt-1">
+                                <span class="text-[11px] bg-cyan-50 text-dwightTealDark border border-cyan-100 px-2.5 py-0.5 rounded-md font-semibold">PID Control</span>
+                                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">RGB LED Matrix</span>
+                                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">Buzzer Tones</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0 border-t border-slate-100 mt-2 flex justify-between items-center text-xs font-bold text-dwightNavy">
+                        <span class="text-slate-500">Logic: <strong class="text-dwightNavy">Scratch Algorithms</strong></span>
+                        <span class="text-dwightTeal flex items-center gap-1">📍 Cantonments Lab</span>
+                    </div>
+                </div>
+
+                <!-- Project 5: LEGO Spike Prime FLL Competition Bot -->
+                <div class="project-card lego bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover-lift flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-56 bg-slate-900 overflow-hidden group">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Lego_Spike_Robot_1.jpg/800px-Lego_Spike_Robot_1.jpg" alt="LEGO Spike Prime Competition Rover" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dwightNavy/90 via-dwightNavy/20 to-transparent"></div>
+                            
+                            <div class="absolute top-3 left-3 flex items-center gap-2">
+                                <span class="bg-legoOrange text-white font-extrabold text-[10px] uppercase px-2.5 py-1 rounded-full shadow">LEGO Spike Prime</span>
+                                <span class="bg-dwightNavy/80 backdrop-blur-md text-white font-bold text-[10px] px-2.5 py-1 rounded-full border border-white/20">Ages 10–13</span>
+                            </div>
+                            
+                            <div class="absolute bottom-3 inset-x-4 text-white">
+                                <h4 class="text-lg font-extrabold leading-tight drop-shadow">FIRST LEGO League Mission Bot</h4>
+                                <p class="text-xs text-legoYellow font-medium">Tournament Drive Chassis • 5 Weeks</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-3 text-slate-600 text-sm">
+                            <p>Engineered for robotics tournaments with dual-motor synchronized drive, 6-axis gyro odometry, and modular quick-swap mission arms.</p>
+                            
+                            <div class="flex flex-wrap gap-1.5 pt-1">
+                                <span class="text-[11px] bg-orange-50 text-legoOrange border border-orange-100 px-2.5 py-0.5 rounded-md font-semibold">Gyro Odometry</span>
+                                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">Modular Gearing</span>
+                                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">Dual Color Sensors</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0 border-t border-slate-100 mt-2 flex justify-between items-center text-xs font-bold text-dwightNavy">
+                        <span class="text-slate-500">Code: <strong class="text-dwightNavy">Python Microcontroller</strong></span>
+                        <span class="text-legoOrange flex items-center gap-1">📍 Cantonments Lab</span>
+                    </div>
+                </div>
+
+                <!-- Project 6: Arduino Autonomous Obstacle Rover -->
+                <div class="project-card arduino bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover-lift flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-56 bg-slate-900 overflow-hidden group">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Prototipo_robot_Arduino.jpg/800px-Prototipo_robot_Arduino.jpg" alt="Arduino Ultrasonic Obstacle Rover Prototype" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-dwightNavy/90 via-dwightNavy/20 to-transparent"></div>
+                            
+                            <div class="absolute top-3 left-3 flex items-center gap-2">
+                                <span class="bg-arduinoGreen text-white font-extrabold text-[10px] uppercase px-2.5 py-1 rounded-full shadow">Arduino Uno C++</span>
+                                <span class="bg-dwightNavy/80 backdrop-blur-md text-white font-bold text-[10px] px-2.5 py-1 rounded-full border border-white/20">Ages 13–17</span>
+                            </div>
+                            
+                            <div class="absolute bottom-3 inset-x-4 text-white">
+                                <h4 class="text-lg font-extrabold leading-tight drop-shadow">Autonomous 4WD Obstacle Rover</h4>
+                                <p class="text-xs text-emerald-300 font-medium">L298N H-Bridge Driver • 4 Weeks</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-3 text-slate-600 text-sm">
+                            <p>Featuring a panning servo-mounted ultrasonic radar scanner that surveys room angles, calculates open vectors, and maneuvers motors smoothly.</p>
+                            
+                            <div class="flex flex-wrap gap-1.5 pt-1">
+                                <span class="text-[11px] bg-emerald-50 text-arduinoGreen border border-emerald-100 px-2.5 py-0.5 rounded-md font-semibold">L298N Motor Driver</span>
+                                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">Panning Servo Radar</span>
+                                <span class="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-md font-medium">Li-Ion Power System</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0 border-t border-slate-100 mt-2 flex justify-between items-center text-xs font-bold text-dwightNavy">
+                        <span class="text-slate-500">Code: <strong class="text-dwightNavy">Embedded C++ Firmware</strong></span>
+                        <span class="text-arduinoGreen flex items-center gap-1">📍 Cantonments Lab</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SCHEDULES & CANTONMENTS LOCATION SECTION -->
+    <section id="schedules" class="bg-dwightNavy py-20 px-4 sm:px-6 lg:px-8 text-white relative">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-dwightAccentCyan font-extrabold text-xs tracking-widest uppercase">FLEXIBLE ENROLLMENT</span>
+                <h2 class="text-4xl font-extrabold text-white tracking-tight">After-School & Weekend Schedules</h2>
+                <p class="text-slate-300 text-base">
+                    Conveniently located in Cantonments, Accra to fit into your child's weekly school routine.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- After-School Card -->
+                <div class="bg-dwightNavyCard rounded-2xl p-8 border border-white/10 relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="inline-block bg-dwightAccentCyan text-dwightNavy font-extrabold text-[10px] uppercase px-3 py-1 rounded-full mb-4">
+                            WEEKDAYS AFTER-SCHOOL
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-white mb-2">After-School Program</h3>
+                        <p class="text-slate-300 text-sm mb-6">Ideal for students attending school in Cantonments, Labone, Osu, Ridge, and Airport Residential.</p>
+                        
+                        <div class="space-y-4 text-sm border-t border-white/10 pt-6">
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300 font-semibold">Weekly Days:</span>
+                                <span class="text-white font-bold">Monday – Thursday</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300 font-semibold">Session Hours:</span>
+                                <span class="text-dwightAccentCyan font-bold">3:30 PM – 5:30 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300 font-semibold">Class Ratio:</span>
+                                <span class="text-white font-bold">1 Instructor : 5 Students</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('After-School')" class="w-full mt-8 bg-dwightTeal hover:bg-dwightTealDark text-white font-extrabold text-sm py-4 rounded-xl tracking-wider uppercase transition-all shadow-lg">
+                        BOOK AFTER-SCHOOL SPOT
+                    </button>
+                </div>
+
+                <!-- Weekend Academy Card -->
+                <div class="bg-dwightNavyCard rounded-2xl p-8 border border-white/10 relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="inline-block bg-legoOrange text-white font-extrabold text-[10px] uppercase px-3 py-1 rounded-full mb-4">
+                            SATURDAY INNOVATION CLUB
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-white mb-2">Weekend Innovation Club</h3>
+                        <p class="text-slate-300 text-sm mb-6">Intensive weekend modules designed for deep project builds, hardware assembly, and competitions.</p>
+                        
+                        <div class="space-y-4 text-sm border-t border-white/10 pt-6">
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300 font-semibold">Morning Session:</span>
+                                <span class="text-legoOrange font-bold">9:00 AM – 12:30 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300 font-semibold">Afternoon Session:</span>
+                                <span class="text-legoOrange font-bold">1:30 PM – 5:00 PM</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300 font-semibold">Hardware Included:</span>
+                                <span class="text-white font-bold">100% Kits & Laptops Provided</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('Weekend Club')" class="w-full mt-8 bg-legoOrange hover:bg-orange-600 text-white font-extrabold text-sm py-4 rounded-xl tracking-wider uppercase transition-all shadow-lg">
+                        BOOK SATURDAY SPOT
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Location Callout Box -->
+            <div id="contact" class="bg-dwightNavyCard rounded-2xl p-8 border border-dwightAccentCyan/30 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2 text-dwightAccentCyan font-extrabold text-xs uppercase tracking-widest">
+                        <svg class="w-4 h-4 text-legoOrange" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                        ACADEMY LOCATION
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-white">Cantonments, Accra, Ghana</h3>
+                    <p class="text-slate-300 text-sm max-w-xl">
+                        Located in the secure heart of Cantonments with easy parking and convenient drop-off and pick-up zones.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
+                    <a href="tel:0530293161" class="w-full sm:w-auto bg-dwightAccentCyan text-dwightNavy font-extrabold px-6 py-3.5 rounded-xl text-center text-sm uppercase tracking-wider hover:bg-white transition-all shadow-md">
+                        CALL: 0530 293 161
+                    </a>
+                    <a href="https://wa.me/233530293161" target="_blank" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-6 py-3.5 rounded-xl text-center text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md">
+                        WhatsApp Us
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION (Dwight & Co exact layout replica) -->
+    <footer class="bg-dwightNavyDark text-slate-400 py-16 px-4 sm:px-6 lg:px-8 border-t border-white/10">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Brand Column -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="h-14 px-3 rounded-2xl bg-white flex items-center justify-center shadow-lg border border-white/20">
+                            <img src="logo.jpg" onerror="this.onerror=null;this.src='logo.png'" alt="ROBOTICA Robotics Club" class="h-10 w-auto object-contain">
+                        </div>
+                        <div>
+                            <span class="text-2xl font-extrabold tracking-tight text-white block leading-none">ROBOTICA</span>
+                            <span class="text-xs font-bold tracking-widest text-dwightAccentCyan uppercase">Robotics Club • Cantonments, Accra</span>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-slate-300 leading-relaxed max-w-md">
+                        ROBOTICA is Cantonments' premier after-school and weekend STEM center, equipping children with future-ready skills in mBot, LEGO Spike Prime, and Arduino microcontrollers.
+                    </p>
+
+                    <!-- STEM Member Badge (Replicating A3 Member Badge from screenshot) -->
+                    <div class="inline-flex items-center gap-3 border border-white/20 rounded-full px-4 py-2 bg-dwightNavy">
+                        <div class="w-6 h-6 rounded-full bg-dwightAccentCyan/20 flex items-center justify-center text-dwightAccentCyan text-xs font-black">
+                            ✓
+                        </div>
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">ACCREDITED STEM LEARNING CENTER</span>
+                    </div>
+                </div>
+
+                <!-- Links Column 1 -->
+                <div class="lg:col-span-3 space-y-4">
+                    <h4 class="text-xs font-extrabold text-dwightAccentCyan tracking-widest uppercase">CURRICULUM</h4>
+                    <ul class="space-y-3 text-sm font-medium">
+                        <li><a href="#curriculum" class="hover:text-white transition-colors">mBot & Scratch Logic</a></li>
+                        <li><a href="#curriculum" class="hover:text-white transition-colors">LEGO Spike Prime Robotics</a></li>
+                        <li><a href="#curriculum" class="hover:text-white transition-colors">Arduino Electronics & C++</a></li>
+                        <li><a href="#curriculum" class="hover:text-white transition-colors">Weekend Innovation League</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links Column 2 -->
+                <div class="lg:col-span-4 space-y-4">
+                    <h4 class="text-xs font-extrabold text-dwightAccentCyan tracking-widest uppercase">ACADEMY INFO</h4>
+                    <ul class="space-y-3 text-sm font-medium">
+                        <li class="flex items-center gap-2">
+                            <span class="text-white font-bold">Location:</span> Cantonments, Accra, Ghana
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-white font-bold">Direct Hotline:</span> 0530 293 161
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-white font-bold">After-School:</span> Mon–Thu (3:30 PM - 5:30 PM)
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-white font-bold">Weekends:</span> Saturday Sessions
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Copyright Line -->
+            <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>© 2026 ROBOTICA Ghana. All Rights Reserved. Cantonments, Accra.</p>
+                <p>Designed with Dwight & Co Layout System</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ENROLLMENT / GET IN TOUCH MODAL -->
+    <div id="modal" class="fixed inset-0 bg-dwightNavy/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-dwightNavyCard border border-dwightAccentCyan/30 rounded-2xl max-w-lg w-full p-8 relative shadow-2xl space-y-6">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">
+                ✕
+            </button>
+
+            <div class="space-y-3">
+                <div class="flex items-center gap-3 pb-3 border-b border-white/10">
+                    <div class="h-11 px-2.5 rounded-xl bg-white flex items-center justify-center shadow">
+                        <img src="logo.jpg" onerror="this.onerror=null;this.src='logo.png'" alt="ROBOTICA" class="h-8 w-auto object-contain">
+                    </div>
+                    <div>
+                        <span class="text-legoOrange font-extrabold text-[10px] tracking-widest uppercase block">ROBOTICA CANTONMENTS</span>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-white leading-tight">Book a Free Trial Class</h3>
+                    </div>
+                </div>
+                <p class="text-slate-300 text-xs">Fill in your details below and our robotics counselor will reach out via call or WhatsApp.</p>
+            </div>
+
+            <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Parent's Full Name</label>
+                    <input type="text" required placeholder="e.g. Kwame Mensah" class="w-full bg-dwightNavy border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-dwightAccentCyan text-sm">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Phone Number</label>
+                        <input type="tel" required placeholder="0530293161" class="w-full bg-dwightNavy border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-dwightAccentCyan text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Child's Age</label>
+                        <input type="number" min="6" max="17" required placeholder="8" class="w-full bg-dwightNavy border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-dwightAccentCyan text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1">Preferred Program</label>
+                    <select id="modal-track" class="w-full bg-dwightNavy border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-dwightAccentCyan text-sm">
+                        <option value="After-School">After-School (Mon - Thu)</option>
+                        <option value="Weekend Club">Weekend Innovation Club (Saturdays)</option>
+                        <option value="mBot Scratch">mBot & Scratch Logic (Ages 6-9)</option>
+                        <option value="Lego Spike">LEGO Spike Prime (Ages 8-12)</option>
+                        <option value="Arduino C++">Arduino & C++ (Ages 12+)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full bg-legoOrange hover:bg-orange-600 text-white font-extrabold py-4 rounded-xl text-sm uppercase tracking-wider transition-all shadow-lg">
+                    SUBMIT INQUIRY
+                </button>
+            </form>
+
+            <div id="modal-success" class="hidden text-center text-emerald-400 font-bold text-sm bg-emerald-900/40 p-4 rounded-xl border border-emerald-500/30">
+                ✓ Thank you! We received your inquiry and will call you at 0530 293 161 shortly.
+            </div>
+        </div>
+    </div>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Toggle mobile drawer navigation
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Toggle Accordion curriculum details
+        function toggleAccordion(id) {
+            const el = document.getElementById(id);
+            const arrow = document.getElementById('arrow-' + id);
+            
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                if (arrow) arrow.classList.add('rotate-180');
+            } else {
+                el.classList.add('hidden');
+                if (arrow) arrow.classList.remove('rotate-180');
+            }
+        }
+
+        // Filter projects gallery
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const btns = document.querySelectorAll('.project-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-dwightNavy', 'text-white');
+                btn.classList.add('bg-white', 'text-slate-700');
+            });
+
+            if (event && event.target) {
+                event.target.classList.remove('bg-white', 'text-slate-700');
+                event.target.classList.add('bg-dwightNavy', 'text-white');
+            }
+
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Modal Controls
+        function openModal(trackName) {
+            const modal = document.getElementById('modal');
+            const trackSelect = document.getElementById('modal-track');
+            if (trackName && trackSelect) {
+                trackSelect.value = trackName;
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.add('hidden');
+            document.getElementById('modal-success').classList.add('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const successBox = document.getElementById('modal-success');
+            successBox.classList.remove('hidden');
+            setTimeout(() => {
+                closeModal();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
