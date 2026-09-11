@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROBOTIKA | STEM & Robotics Education - Cantonments, Accra</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.jpg">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Plus Jakarta Sans Font for clean geometric typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        dwightTeal: '#10AFCA',
+                        dwightTealDark: '#0D97AF',
+                        dwightLightCyan: '#D2F2F7',
+                        dwightNavy: '#0B1C2D',
+                        dwightNavyCard: '#11273C',
+                        dwightNavyDark: '#081624',
+                        dwightAccentCyan: '#2ED5EC',
+                        legoOrange: '#FF6B35',
+                        legoYellow: '#FFC857',
+                        arduinoGreen: '#10B981',
+                        codePurple: '#8B5CF6',
+                        warmNeutral: '#F8FAFC',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1E293B;
+            overflow-x: hidden;
+            background-color: #0B1C2D; /* Fallback */
+        }
+
+        /* Clean transition for buttons (No more floating hover-lifts) */
+        .flat-transition {
+            transition: all 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-dwightAccentCyan selection:text-dwightNavy">
+
+    <!-- GLOBAL BACKGROUND: children.jpg remains fixed behind all text and sections -->
+    <div class="fixed inset-0 z-[-1] bg-dwightNavy">
+        <img src="children.jpg" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/0B1C2D/2ED5EC?text=ROBOTIKA+Lab'" alt="Students Building Robots" class="w-full h-full object-cover opacity-30">
+    </div>
+
+    <!-- FLAT NAVIGATION HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 border-b border-slate-200 backdrop-blur-md">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3">
+                <div class="h-10 px-2 rounded bg-white flex items-center justify-center border border-slate-200">
+                    <img src="logo.jpg" onerror="this.onerror=null;this.src='logo.png'" alt="ROBOTIKA" class="h-7 w-auto object-contain">
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl sm:text-2xl font-black tracking-tight text-dwightNavy leading-none">ROBOTIKA</span>
+                    <span class="text-[10px] font-bold tracking-widest text-legoOrange uppercase">Cantonments</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center space-x-7 font-bold text-sm text-slate-600">
+                <a href="#about" class="hover:text-legoOrange flat-transition">Why Us</a>
+                <a href="#curriculum" class="hover:text-legoOrange flat-transition">Courses</a>
+                <a href="#team" class="hover:text-legoOrange flat-transition">Our Team</a>
+                <a href="#projects" class="hover:text-legoOrange flat-transition">Projects</a>
+                <a href="#schedules" class="hover:text-legoOrange flat-transition">Pricing</a>
+            </div>
+
+            <!-- Action CTA Buttons -->
+            <div class="flex items-center gap-3">
+                <a href="tel:+233 24 425 1583" class="hidden sm:flex items-center gap-1.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-2 border border-slate-200 flat-transition">
+                    📞 +233 24 425 1583
+                </a>
+                <button onclick="openModal()" class="bg-dwightNavy hover:bg-legoOrange text-white px-5 py-2.5 text-xs sm:text-sm font-bold tracking-wider uppercase flat-transition">
+                    GET IN TOUCH
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 bg-slate-100 border border-slate-200 flex items-center justify-center text-dwightNavy">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200 px-4 py-4">
+            <div class="flex flex-col gap-4 font-bold text-base text-slate-700">
+                <a href="#about" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-100 hover:text-dwightAccentCyan">Why ROBOTIKA</a>
+                <a href="#curriculum" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-100 hover:text-dwightAccentCyan">Curriculum</a>
+                <a href="#team" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-100 hover:text-dwightAccentCyan">Our Team</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-100 hover:text-dwightAccentCyan">Projects</a>
+                <a href="#schedules" onclick="toggleMobileMenu()" class="py-2 border-b border-slate-100 hover:text-dwightAccentCyan">Schedules & Fees</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Centered text directly over the children background) -->
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center min-h-[85vh]">
+        <div class="max-w-4xl mx-auto space-y-6 relative z-10">
+            
+            <div class="inline-flex items-center gap-2 bg-white text-dwightNavy font-bold text-xs uppercase px-4 py-2 border border-slate-200">
+                <span class="w-2 h-2 bg-legoOrange"></span>
+                Accra's Premier Hands-On STEM Academy
+            </div>
+
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1]">
+                Empowering young <span class="text-dwightAccentCyan">automation</span> innovators.
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-200 font-medium leading-relaxed max-w-2xl mx-auto">
+                Focus on your child's future leadership, while we build their hands-on robotics, engineering, and coding foundation in Cantonments, Accra.
+            </p>
+
+            <div class="pt-6 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button class="w-full sm:w-auto bg-legoOrange hover:bg-orange-600 text-white font-bold text-sm uppercase px-8 py-4 border border-transparent flat-transition">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSePEWgcxdq2_MOjsMybDifMW59fnIh4JG01kypuJ3Lo4c0DwQ/viewform">BOOK A SPOT NOW</a>
+                </button>
+                <a href="tel:+233 24 425 1583" class="w-full sm:w-auto bg-transparent border-2 border-white text-white hover:bg-white hover:text-dwightNavy font-bold text-sm px-8 py-3.5 flat-transition text-center">
+                    CALL +233 24 425 1583
+                </a>
+            </div>
+
+            <!-- Hardware Tags -->
+            <div class="pt-10 flex flex-wrap justify-center items-center gap-3 text-xs font-bold tracking-wider uppercase text-white">
+                <span class="px-3 py-1.5 border border-white/30 bg-black/40">mBot Scratch</span>
+                <span class="px-3 py-1.5 border border-white/30 bg-black/40">LEGO Spike Prime</span>
+                <span class="px-3 py-1.5 border border-white/30 bg-black/40">Arduino C++</span>
+                <span class="px-3 py-1.5 border border-white/30 bg-black/40">IoT & MicroPython</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHT NEUTRAL SECTION 1: KEY ACADEMY PILLARS -->
+    <section id="about" class="bg-white/95 backdrop-blur-md py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200 relative z-20">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-legoOrange font-bold text-xs tracking-widest uppercase px-3.5 py-1.5 border border-legoOrange">
+                    WHY CHOOSE US
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-dwightNavy tracking-tight">
+                    Real Hardware. Real Engineering. Zero Screen Waste.
+                </h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    Unlike typical software bootcamps that rely solely on screen simulations, ROBOTIKA provides physical robotics kits, electrical breadboards, and hands-on tools for every single student.
+                </p>
+            </div>
+
+            <!-- Feature Cards (Flat design, no shadows) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="bg-slate-50 p-8 border border-slate-200 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 bg-dwightNavy flex items-center justify-center text-dwightAccentCyan">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-dwightNavy">Deep Hardware Mastery</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Students build with real ultrasonic sensors, servo motors, breadboards, and microcontrollers in Cantonments—gaining genuine electrical engineering experience.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-8 border border-slate-200 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 bg-dwightNavy flex items-center justify-center text-legoOrange">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-dwightNavy">Structured Growth Paths</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            A clear progression roadmap: starting from Scratch visual blocks on mBot, stepping up to LEGO Spike Prime gears, and mastering Arduino C++ syntax.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-8 border border-slate-200 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 bg-dwightNavy flex items-center justify-center text-arduinoGreen">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4a5 5 0 005 5h4a5 5 0 005-5V3M3 3h18M12 17v4m-4 0h8" /></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-dwightNavy">Competitions & Leagues</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Students collaborate in team robotics hackathons, building autonomous maze-solvers, obstacle cars, and smart IoT projects for competitions.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- OUR CURRICULUM SECTION -->
+    <section id="curriculum" class="bg-dwightNavy/95 backdrop-blur-md py-20 px-4 sm:px-6 lg:px-8 border-t border-dwightNavyCard text-white relative z-20">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div class="space-y-3">
+                    <span class="text-dwightAccentCyan font-bold text-xs tracking-widest uppercase border border-dwightAccentCyan px-3.5 py-1.5">
+                        OUR CURRICULUM
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Where We Excel</h2>
+                </div>
+                <p class="text-slate-300 text-sm max-w-md">
+                    Click any program track below to explore course details and hardware kits used.
+                </p>
+            </div>
+
+            <!-- Program List -->
+            <div class="space-y-4">
+                
+                <!-- Item 1 -->
+                <div class="bg-dwightNavyCard border border-slate-700 p-6 sm:p-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer" onclick="toggleAccordion('acc1')">
+                        <div class="flex items-start sm:items-center gap-6">
+                            <span class="text-dwightAccentCyan font-bold text-xl">01</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">mBot Robotics & Scratch Block Logic</h3>
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="text-dwightAccentCyan text-xs font-bold uppercase">Ages 6 – 9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <svg id="arrow-acc1" class="w-6 h-6 text-slate-400 flat-transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    
+                    <div id="acc1" class="hidden pt-6 mt-6 border-t border-slate-700 space-y-4 text-slate-300 text-sm">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                            <div class="md:col-span-8 space-y-4">
+                                <p>Introduces younger kids to physical robotics using Makeblock mBot. Students learn how motors turn, ultrasonic sensors detect distance, and line-follower modules navigate custom maze maps.</p>
+                                <ul class="list-disc pl-5 space-y-1 text-xs text-white">
+                                    <li>Block Visual Coding</li>
+                                    <li>Ultrasonic Obstacle Avoidance</li>
+                                    <li>RGB LED Matrix Display</li>
+                                </ul>
+                            </div>
+                            <div class="md:col-span-4 border border-slate-700 h-36 bg-black">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Mbot_free_to_use_creative_commons.jpg/800px-Mbot_free_to_use_creative_commons.jpg" alt="mBot Robot Kit" class="w-full h-full object-cover opacity-80">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-dwightNavyCard border border-slate-700 p-6 sm:p-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer" onclick="toggleAccordion('acc2')">
+                        <div class="flex items-start sm:items-center gap-6">
+                            <span class="text-legoOrange font-bold text-xl">02</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">LEGO Spike Prime Mechanical Engineering</h3>
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="text-legoOrange text-xs font-bold uppercase">Ages 8 – 12</span>
+                                </div>
+                            </div>
+                        </div>
+                        <svg id="arrow-acc2" class="w-6 h-6 text-slate-400 flat-transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    
+                    <div id="acc2" class="hidden pt-6 mt-6 border-t border-slate-700 space-y-4 text-slate-300 text-sm">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                            <div class="md:col-span-8 space-y-4">
+                                <p>Combines colorful LEGO building elements, smart multi-port hubs, and high-torque motors. Students construct complex mechanical gears, robotic gripper arms, and automated sorting devices.</p>
+                                <ul class="list-disc pl-5 space-y-1 text-xs text-white">
+                                    <li>Gyro & Force Sensor Control</li>
+                                    <li>Gear Ratios & Linkages</li>
+                                    <li>Scratch to Python Transition</li>
+                                </ul>
+                            </div>
+                            <div class="md:col-span-4 border border-slate-700 h-36 bg-black">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Lego_Spike_Robot_2.jpg/800px-Lego_Spike_Robot_2.jpg" alt="LEGO Spike Prime Kit" class="w-full h-full object-cover opacity-80">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="bg-dwightNavyCard border border-slate-700 p-6 sm:p-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer" onclick="toggleAccordion('acc3')">
+                        <div class="flex items-start sm:items-center gap-6">
+                            <span class="text-arduinoGreen font-bold text-xl">03</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Arduino Microcontrollers & Embedded C++</h3>
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="text-arduinoGreen text-xs font-bold uppercase">Ages 12 – 17</span>
+                                </div>
+                            </div>
+                        </div>
+                        <svg id="arrow-acc3" class="w-6 h-6 text-slate-400 flat-transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    
+                    <div id="acc3" class="hidden pt-6 mt-6 border-t border-slate-700 space-y-4 text-slate-300 text-sm">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                            <div class="md:col-span-8 space-y-4">
+                                <p>Real electronics engineering for teens! Students learn circuit design on breadboards, resistor calculations, transistor switching, and text-based C++ firmware code directly on Arduino Uno & Nano microchips.</p>
+                                <ul class="list-disc pl-5 space-y-1 text-xs text-white">
+                                    <li>C++ Firmware Syntax</li>
+                                    <li>OLED & Sensor Interfacing</li>
+                                    <li>IoT & Wireless Controllers</li>
+                                </ul>
+                            </div>
+                            <div class="md:col-span-4 border border-slate-700 h-36 bg-black">
+                                <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=800&q=80" alt="Arduino Electronics Kit" class="w-full h-full object-cover opacity-80">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: MEET THE TEAM SECTION -->
+    <section id="team" class="bg-slate-50/95 backdrop-blur-md py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200 relative z-20">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="text-dwightTeal font-bold text-xs tracking-widest uppercase border border-dwightTeal px-3.5 py-1.5">
+                    OUR EXPERTS
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-dwightNavy tracking-tight">
+                    Meet the Team
+                </h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    The dedicated engineers, educators, and mentors guiding the next generation of innovators at ROBOTIKA.
+                </p>
+            </div>
+
+            <!-- Team Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Member 1 -->
+                <div class="bg-white border border-slate-200 p-6 text-center">
+                    <div class="w-32 h-32 mx-auto bg-slate-100 mb-4 overflow-hidden border border-slate-200">
+                        <img src="klenam.jpeg" onerror="this.src='https://placehold.co/400x400/E2E8F0/475569?text=Photo'" class="w-full h-full object-cover" alt="Team Member">
+                    </div>
+                    <h3 class="text-lg font-bold text-dwightNavy">Klenam Asem</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">FOUNDER</p>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="bg-white border border-slate-200 p-6 text-center">
+                    <div class="w-32 h-32 mx-auto bg-slate-100 mb-4 overflow-hidden border border-slate-200">
+                        <img src="petra.jpeg" onerror="this.src='https://placehold.co/400x400/E2E8F0/475569?text=Photo'" class="w-full h-full object-cover" alt="Team Member">
+                    </div>
+                    <h3 class="text-lg font-bold text-dwightNavy">Petra Adjei-Kumi</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">CO-FOUNDER</p>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="bg-white border border-slate-200 p-6 text-center">
+                    <div class="w-32 h-32 mx-auto bg-slate-100 mb-4 overflow-hidden border border-slate-200">
+                        <img src="jerry.jpeg" onerror="this.src='https://placehold.co/400x400/E2E8F0/475569?text=Photo'" class="w-full h-full object-cover" alt="Team Member">
+                    </div>
+                    <h3 class="text-lg font-bold text-dwightNavy">Jerry Larbi</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">TUTOR</p>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="bg-white border border-slate-200 p-6 text-center">
+                    <div class="w-32 h-32 mx-auto bg-slate-100 mb-4 overflow-hidden border border-slate-200">
+                        <img src="dennis.jpeg" onerror="this.src='https://placehold.co/400x400/E2E8F0/475569?text=Photo'" class="w-full h-full object-cover" alt="Team Member">
+                    </div>
+                    <h3 class="text-lg font-bold text-dwightNavy">Dennis Abaah</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">TUTOR</p>
+                </div>
+
+                <!-- Member 5 -->
+                <div class="bg-white border border-slate-200 p-6 text-center">
+                    <div class="w-32 h-32 mx-auto bg-slate-100 mb-4 overflow-hidden border border-slate-200">
+                        <img src="darren.jpeg" onerror="this.src='https://placehold.co/400x400/E2E8F0/475569?text=Photo'" class="w-full h-full object-cover" alt="Team Member">
+                    </div>
+                    <h3 class="text-lg font-bold text-dwightNavy">Darren Frimpong</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">TUTOR</p>
+                </div>
+
+                <!-- Member 6 -->
+                <div class="bg-white border border-slate-200 p-6 text-center">
+                    <div class="w-32 h-32 mx-auto bg-slate-100 mb-4 overflow-hidden border border-slate-200">
+                        <img src="julian.jpeg" onerror="this.src='https://placehold.co/400x400/E2E8F0/475569?text=Photo'" class="w-full h-full object-cover" alt="Team Member">
+                    </div>
+                    <h3 class="text-lg font-bold text-dwightNavy">Julian Kwateng</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">TUTOR</p>
+                </div>
+                 <!-- Member 7 -->
+                <div class="bg-white border border-slate-200 p-6 text-center">
+                    <div class="w-32 h-32 mx-auto bg-slate-100 mb-4 overflow-hidden border border-slate-200">
+                        <img src="onielle.jpeg" onerror="this.src='https://placehold.co/400x400/E2E8F0/475569?text=Photo'" class="w-full h-full object-cover" alt="Team Member">
+                    </div>
+                    <h3 class="text-lg font-bold text-dwightNavy">Oniel Danse</h3>
+                    <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">TUTOR</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE STUDENT PROJECTS GALLERY -->
+    <section id="projects" class="bg-white/95 backdrop-blur-md py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200 relative z-20">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div class="space-y-3">
+                    <span class="text-dwightNavy font-bold text-xs tracking-widest uppercase border border-dwightNavy px-3.5 py-1.5">
+                        HANDS-ON OUTCOMES
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-dwightNavy tracking-tight">
+                        What Our Students Build
+                    </h2>
+                </div>
+
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2 text-xs font-bold">
+                    <button onclick="filterProjects('all')" class="project-btn bg-dwightNavy text-white px-4 py-2 border border-dwightNavy">All Kits</button>
+                    <button onclick="filterProjects('mbot')" class="project-btn bg-white text-slate-700 hover:bg-slate-100 px-4 py-2 border border-slate-300">mBot</button>
+                    <button onclick="filterProjects('lego')" class="project-btn bg-white text-slate-700 hover:bg-slate-100 px-4 py-2 border border-slate-300">LEGO</button>
+                    <button onclick="filterProjects('arduino')" class="project-btn bg-white text-slate-700 hover:bg-slate-100 px-4 py-2 border border-slate-300">Arduino</button>
+                </div>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="project-card mbot bg-slate-50 border border-slate-200 flex flex-col">
+                    <div class="h-40 bg-dwightNavy p-6 flex flex-col justify-end">
+                        <span class="text-dwightAccentCyan text-[10px] font-bold uppercase">mBot Scratch</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Autonomous Maze Navigator</h4>
+                    </div>
+                    <div class="p-6 text-slate-600 text-sm flex-grow">
+                        <p>Uses dual ultrasonic distance sensors and infrared floor detectors to navigate dynamic mazes without hitting walls.</p>
+                    </div>
+                </div>
+
+                <div class="project-card lego bg-slate-50 border border-slate-200 flex flex-col">
+                    <div class="h-40 bg-dwightNavy p-6 flex flex-col justify-end">
+                        <span class="text-legoOrange text-[10px] font-bold uppercase">LEGO Spike Prime</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Color-Sorting Robotic Claw</h4>
+                    </div>
+                    <div class="p-6 text-slate-600 text-sm flex-grow">
+                        <p>Reads color light frequency from objects and triggers motorized gear linkages to sort items into correct bins.</p>
+                    </div>
+                </div>
+
+                <div class="project-card arduino bg-slate-50 border border-slate-200 flex flex-col">
+                    <div class="h-40 bg-dwightNavy p-6 flex flex-col justify-end">
+                        <span class="text-arduinoGreen text-[10px] font-bold uppercase">Arduino Uno C++</span>
+                        <h4 class="text-lg font-bold text-white mt-1">Smart Agriculture Sensor</h4>
+                    </div>
+                    <div class="p-6 text-slate-600 text-sm flex-grow">
+                        <p>Monitors soil moisture and ambient temperature, triggering automated water pumps and displaying telemetry on an OLED.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SCHEDULES & LOCATION SECTION -->
+    <section id="schedules" class="bg-dwightNavy/95 backdrop-blur-md py-20 px-4 sm:px-6 lg:px-8 text-white relative z-20 border-t border-slate-700">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-white font-bold text-xs tracking-widest uppercase border border-white px-3.5 py-1.5">
+                    FLEXIBLE ENROLLMENT
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Schedules & Pricing</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div class="bg-dwightNavyCard border border-slate-600 p-8 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">After-School Program</h3>
+                        <p class="text-slate-300 text-sm mb-6">Ideal for students in Accra and around.</p>
+                        <ul class="space-y-3 text-sm border-t border-slate-600 pt-6">
+                            <li class="flex justify-between"><span class="text-slate-400">Days:</span> <b>Mon – Thu</b></li>
+                            <li class="flex justify-between"><span class="text-slate-400">Hours:</span> <b>4:00 PM – 5:30 PM</b></li>
+                            <li class="flex justify-between"><span class="text-slate-400">Ratio:</span> <b>1 : 5</b></li>
+                        </ul>
+                    </div>
+                    <button  class="w-full mt-8 bg-dwightTeal hover:bg-dwightTealDark text-white font-bold text-sm py-4 tracking-wider uppercase flat-transition">
+                       <a href="https://docs.google.com/forms/d/e/1FAIpQLSePEWgcxdq2_MOjsMybDifMW59fnIh4JG01kypuJ3Lo4c0DwQ/viewform">BOOK AFTER-SCHOOL</a>
+                    </button>
+                </div>
+
+                <div class="bg-dwightNavyCard border border-slate-600 p-8 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Weekend Innovation Club</h3>
+                        <p class="text-slate-300 text-sm mb-6">Intensive weekend modules designed for deep project builds, hardware assembly, and competitions.</p>
+                        <ul class="space-y-3 text-sm border-t border-slate-600 pt-6">
+                            <li class="flex justify-between"><span class="text-slate-400">Morning:</span> <b>9:00 AM – 12:30 PM</b></li>
+                            <li class="flex justify-between"><span class="text-slate-400">Afternoon:</span> <b>1:30 PM – 5:00 PM</b></li>
+                            <li class="flex justify-between"><span class="text-slate-400">Hardware:</span> <b>100% Provided</b></li>
+                        </ul>
+                    </div>
+                    <button  class="w-full mt-8 bg-legoOrange hover:bg-orange-600 text-white font-bold text-sm py-4 tracking-wider uppercase flat-transition">
+                       <a href="https://docs.google.com/forms/d/e/1FAIpQLSePEWgcxdq2_MOjsMybDifMW59fnIh4JG01kypuJ3Lo4c0DwQ/viewform">BOOK WEEKEND CLUB</a>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Location Callout -->
+            <div id="contact" class="bg-black/40 border border-slate-700 p-8 flex flex-col md:flex-row items-center justify-between gap-6 mt-8">
+                <div>
+                    <h3 class="text-xl font-bold text-white">Cantonments, Accra, Ghana</h3>
+                    <p class="text-slate-400 text-sm mt-1">Located in the secure heart of Cantonments with easy parking.</p>
+                </div>
+                <div class="flex gap-4 w-full md:w-auto">
+                    <a href="tel:+233 24 425 1583" class="w-full md:w-auto bg-white text-dwightNavy font-bold px-6 py-3 text-center text-sm uppercase flat-transition hover:bg-slate-200">
+                        CALL: +233 24 425 1583
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-dwightNavyDark text-slate-400 py-12 px-4 sm:px-6 lg:px-8 border-t border-slate-800 relative z-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-slate-800 pb-10">
+            <div>
+                <span class="text-2xl font-black text-white block">ROBOTIKA</span>
+                <p class="text-sm mt-3 leading-relaxed">Cantonments' premier after-school and weekend STEM center, equipping children with future-ready engineering skills.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-wider">Curriculum</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#curriculum" class="hover:text-white">mBot & Scratch</a></li>
+                    <li><a href="#curriculum" class="hover:text-white">LEGO Spike Prime</a></li>
+                    <li><a href="#curriculum" class="hover:text-white">Arduino & C++</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase text-xs tracking-wider">Contact</h4>
+                <ul class="space-y-2 text-sm">
+                    <li>Cantonments, Accra, Ghana</li>
+                    <li>+233 24 425 1583</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto pt-6 text-xs flex justify-between">
+            <p>© 2026 ROBOTIKA Ghana. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="modal" class="fixed inset-0 bg-dwightNavy/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-dwightNavyCard border border-slate-600 max-w-lg w-full p-8 relative">
+            <button  class="absolute top-4 right-4 text-slate-400 hover:text-white font-bold">✕</button>
+            <h3 class="text-2xl font-bold text-white mb-6">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSePEWgcxdq2_MOjsMybDifMW59fnIh4JG01kypuJ3Lo4c0DwQ/viewform">Book a Free Trial Class</a> 
+            </h3>
+            
+            <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Parent's Name</label>
+                    <input type="text" required class="w-full bg-black/30 border border-slate-600 px-4 py-3 text-white text-sm focus:outline-none focus:border-white">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Phone</label>
+                        <input type="tel" required class="w-full bg-black/30 border border-slate-600 px-4 py-3 text-white text-sm focus:outline-none focus:border-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Child's Age</label>
+                        <input type="number" min="6" max="17" required class="w-full bg-black/30 border border-slate-600 px-4 py-3 text-white text-sm focus:outline-none focus:border-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-400 mb-1">Program</label>
+                    <select id="modal-track" class="w-full bg-black/30 border border-slate-600 px-4 py-3 text-white text-sm focus:outline-none focus:border-white">
+                        <option value="After-School">After-School</option>
+                        <option value="Weekend Club">Weekend Innovation Club</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-white text-dwightNavy font-bold py-4 text-sm uppercase tracking-wider mt-4 hover:bg-slate-200 flat-transition">
+                    SUBMIT INQUIRY
+                </button>
+            </form>
+
+            <div id="modal-success" class="hidden text-center text-green-400 font-bold text-sm mt-4 border border-green-400/30 bg-green-400/10 p-3">
+                ✓ Received! We will call you shortly.
+            </div>
+        </div>
+    </div>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleAccordion(id) {
+            const el = document.getElementById(id);
+            const arrow = document.getElementById('arrow-' + id);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+                if (arrow) arrow.classList.add('rotate-180');
+            } else {
+                el.classList.add('hidden');
+                if (arrow) arrow.classList.remove('rotate-180');
+            }
+        }
+
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const btns = document.querySelectorAll('.project-btn');
+
+            btns.forEach(btn => {
+                btn.classList.remove('bg-dwightNavy', 'text-white', 'border-dwightNavy');
+                btn.classList.add('bg-white', 'text-slate-700', 'border-slate-300');
+            });
+
+            event.target.classList.remove('bg-white', 'text-slate-700', 'border-slate-300');
+            event.target.classList.add('bg-dwightNavy', 'text-white', 'border-dwightNavy');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openModal(trackName) {
+            document.getElementById('modal').classList.remove('hidden');
+            if (trackName) document.getElementById('modal-track').value = trackName;
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('modal-success').classList.add('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            document.getElementById('modal-success').classList.remove('hidden');
+            setTimeout(closeModal, 3000);
+        }
+    </script>
+</body>
+</html>
