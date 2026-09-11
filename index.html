@@ -72,7 +72,7 @@
                 </div>
                 <div class="flex flex-col">
                     <span class="text-xl sm:text-2xl font-black tracking-tight text-dwightNavy leading-none">ROBOTIKA</span>
-                    <span class="text-[10px] font-bold tracking-widest text-legoOrange uppercase">Cantonments</span>
+                    <span class="text-[10px] font-bold tracking-widest text-legoOrange uppercase">TECH CENTRE</span>
                 </div>
             </a>
 
@@ -90,9 +90,11 @@
                 <a href="tel:+233 24 425 1583" class="hidden sm:flex items-center gap-1.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-2 border border-slate-200 flat-transition">
                     📞 +233 24 425 1583
                 </a>
-                <button onclick="openModal()" class="bg-dwightNavy hover:bg-legoOrange text-white px-5 py-2.5 text-xs sm:text-sm font-bold tracking-wider uppercase flat-transition">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSePEWgcxdq2_MOjsMybDifMW59fnIh4JG01kypuJ3Lo4c0DwQ/viewform">
+                   <button class="bg-dwightNavy hover:bg-legoOrange text-white px-3 py-1.5 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold tracking-wide sm:tracking-wider uppercase flat-transition">
                     GET IN TOUCH
-                </button>
+                  </button>
+                </a>
                 
                 <!-- Mobile Menu Button -->
                 <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 bg-slate-100 border border-slate-200 flex items-center justify-center text-dwightNavy">
@@ -125,11 +127,11 @@
             </div>
 
             <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1]">
-                Empowering young <span class="text-dwightAccentCyan">automation</span> innovators.
+                Empowering young <span class="text-dwightAccentCyan">curious</span> innovators.
             </h1>
 
             <p class="text-lg sm:text-xl text-slate-200 font-medium leading-relaxed max-w-2xl mx-auto">
-                Focus on your child's future leadership, while we build their hands-on robotics, engineering, and coding foundation in Cantonments, Accra.
+                Focus on your child's future leadership, while we build their hands-on robotics, AI, and coding foundation in Cantonments, Accra.
             </p>
 
             <div class="pt-6 flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -255,7 +257,7 @@
                                 </ul>
                             </div>
                             <div class="md:col-span-4 border border-slate-700 h-36 bg-black">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Mbot_free_to_use_creative_commons.jpg/800px-Mbot_free_to_use_creative_commons.jpg" alt="mBot Robot Kit" class="w-full h-full object-cover opacity-80">
+                                <img src="mbot1.webp" alt="mBot Robot Kit" class="w-full h-full object-cover opacity-80">
                             </div>
                         </div>
                     </div>
@@ -287,7 +289,7 @@
                                 </ul>
                             </div>
                             <div class="md:col-span-4 border border-slate-700 h-36 bg-black">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Lego_Spike_Robot_2.jpg/800px-Lego_Spike_Robot_2.jpg" alt="LEGO Spike Prime Kit" class="w-full h-full object-cover opacity-80">
+                                <img src="spike.webp" alt="LEGO Spike Prime Kit" class="w-full h-full object-cover opacity-80">
                             </div>
                         </div>
                     </div>
@@ -324,12 +326,44 @@
                         </div>
                     </div>
                 </div>
+                <!-- Item 4 -->
+                <div class="bg-dwightNavyCard border border-slate-700 p-6 sm:p-8">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer" onclick="toggleAccordion('acc4')">
+                        <div class="flex items-start sm:items-center gap-6">
+                            <span class="text-arduinoGreen font-bold text-xl">04</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">AI and Prompting</h3>
+                                <div class="flex items-center gap-3 mt-1">
+                                    <span class="text-arduinoGreen text-xs font-bold uppercase">Ages 10 – 17</span>
+                                </div>
+                            </div>
+                        </div>
+                        <svg id="arrow-acc4" class="w-6 h-6 text-slate-400 flat-transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    
+                    <div id="acc4" class="hidden pt-6 mt-6 border-t border-slate-700 space-y-4 text-slate-300 text-sm">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                            <div class="md:col-span-8 space-y-4">
+                                <p>Real-world AI use in developing solutions for problems around us.</p>
+                                <ul class="list-disc pl-5 space-y-1 text-xs text-white">
+                                    <li>Prompting</li>
+                                    <li>AI use cases</li>
+                                    <li>AI in developing solutions</li>
+                                </ul>
+                            </div>
+                            <div class="md:col-span-4 border border-slate-700 h-36 bg-black">
+                                <img src="aipic.webp" alt="Arduino Electronics Kit" class="w-full h-full object-cover opacity-80">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </div>
     </section>
 
-    <!-- NEW: MEET THE TEAM SECTION -->
+    <!-- MEET THE TEAM SECTION -->
     <section id="team" class="bg-slate-50/95 backdrop-blur-md py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-200 relative z-20">
         <div class="max-w-7xl mx-auto space-y-12">
             
@@ -440,8 +474,12 @@
             <!-- Project Cards Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 
-                <div class="project-card mbot bg-slate-50 border border-slate-200 flex flex-col">
-                    <div class="h-40 bg-dwightNavy p-6 flex flex-col justify-end">
+                <!-- Project Card 1: mBot -->
+                <div class="project-card mbot bg-slate-50 border border-slate-200 flex flex-col overflow-hidden">
+                    <div class="h-48 w-full bg-slate-200 overflow-hidden">
+                        <img src="mbotline.webp" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0B1C2D/2ED5EC?text=mBot+Project'" alt="Autonomous Maze Navigator" class="w-full h-full object-cover">
+                    </div>
+                    <div class="h-32 bg-dwightNavy p-6 flex flex-col justify-end">
                         <span class="text-dwightAccentCyan text-[10px] font-bold uppercase">mBot Scratch</span>
                         <h4 class="text-lg font-bold text-white mt-1">Autonomous Maze Navigator</h4>
                     </div>
@@ -450,8 +488,12 @@
                     </div>
                 </div>
 
-                <div class="project-card lego bg-slate-50 border border-slate-200 flex flex-col">
-                    <div class="h-40 bg-dwightNavy p-6 flex flex-col justify-end">
+                <!-- Project Card 2: LEGO -->
+                <div class="project-card lego bg-slate-50 border border-slate-200 flex flex-col overflow-hidden">
+                    <div class="h-48 w-full bg-slate-200 overflow-hidden">
+                        <img src="claw.webp" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0B1C2D/FF6B35?text=LEGO+Project'" alt="Color-Sorting Robotic Claw" class="w-full h-full object-cover">
+                    </div>
+                    <div class="h-32 bg-dwightNavy p-6 flex flex-col justify-end">
                         <span class="text-legoOrange text-[10px] font-bold uppercase">LEGO Spike Prime</span>
                         <h4 class="text-lg font-bold text-white mt-1">Color-Sorting Robotic Claw</h4>
                     </div>
@@ -460,8 +502,12 @@
                     </div>
                 </div>
 
-                <div class="project-card arduino bg-slate-50 border border-slate-200 flex flex-col">
-                    <div class="h-40 bg-dwightNavy p-6 flex flex-col justify-end">
+                <!-- Project Card 3: Arduino -->
+                <div class="project-card arduino bg-slate-50 border border-slate-200 flex flex-col overflow-hidden">
+                    <div class="h-48 w-full bg-slate-200 overflow-hidden">
+                        <img src="ardcode.webp" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0B1C2D/10B981?text=Arduino+Project'" alt="Smart Agriculture Sensor" class="w-full h-full object-cover">
+                    </div>
+                    <div class="h-32 bg-dwightNavy p-6 flex flex-col justify-end">
                         <span class="text-arduinoGreen text-[10px] font-bold uppercase">Arduino Uno C++</span>
                         <h4 class="text-lg font-bold text-white mt-1">Smart Agriculture Sensor</h4>
                     </div>
@@ -566,7 +612,7 @@
     <!-- MODAL -->
     <div id="modal" class="fixed inset-0 bg-dwightNavy/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-dwightNavyCard border border-slate-600 max-w-lg w-full p-8 relative">
-            <button  class="absolute top-4 right-4 text-slate-400 hover:text-white font-bold">✕</button>
+            <button class="absolute top-4 right-4 text-slate-400 hover:text-white font-bold">✕</button>
             <h3 class="text-2xl font-bold text-white mb-6">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSePEWgcxdq2_MOjsMybDifMW59fnIh4JG01kypuJ3Lo4c0DwQ/viewform">Book a Free Trial Class</a> 
             </h3>
